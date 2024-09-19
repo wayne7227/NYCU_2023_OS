@@ -1,0 +1,71 @@
+(1)(2)
+
+Qibo is an open-source middleware framework that specializes in the field of quantum computing. The framework aims to expedite quantum research from theory to experimentation by providing standardized software tools that abstract various heterogeneous software interfaces, encompassing multiple aspects from quantum algorithms to low-level hardware control. So, what is middleware? It is a code that controls quantum algorithms, calibration, and more, used to maintain research databases for algorithms, among other purposes.The development of this middleware stems from the author's recognition of a lack of a comprehensive open-source library that covers everything from simulation to quantum hardware control. Hence, the Qibo module was developed to address this gap.
+
+(3)(4)(5)
+
+To conclude this section,This passage introduces the latest version (0.2.0) of the Qibo quantum computing framework, providing an overview of its overall status and technical specifications. It details the software design, modules, and tools' latest features, including simulation, hardware control, and calibration. The Qibo framework is divided into two parts: the language API and the backends implementation for execution on classical or quantum hardware. The language API offers high-level interfaces supporting rapid prototyping of quantum computing algorithms based on circuit and adiabatic paradigms using Python. The quantum circuit API implements various basic operations, including precise quantum state manipulation, circuit model initialization, single and two-qubit gates, and more. Qibo also provides rich interfaces for noisy quantum simulation on classical hardware, allowing the construction of custom noise models through channels. Additionally, the simulation backends, namely numpy, tensorflow, and qibojit, are introduced with emphasis on their advantages, limitations, and application-specific recommendations. 
+
+(6)(7)(8)(9)
+
+
+The above text describes the framework of the quantum computing driver provided by Qibolab. Here are the key points:
+
+Software Abstraction: Qibolab provides two main interface objects, namely the Pulse object and the Platform. The Pulse object is used to define the pulses played on quantum bits, while the Platform is used to execute these pulses on a specific QPU.
+
+Quantum Bit Control: Qibolab supports drivers for various commercial instruments used to control and operate quantum bits. The Pulse object and PulseSequence are used to organize and define pulses, while the Platform coordinates different instruments to achieve control over quantum bits.
+
+Laboratory Equipment Abstraction: Qibolab provides abstract objects such as Instrument, Controller, Channel, etc., to support low-level drivers for different devices. These abstract objects enable compatibility between different devices and the Qibo framework.
+
+Dynamic and Static Parameters: The quantum bit control process involves dynamic and static parameters. Static parameters are typically hardcoded in Platform generation, while dynamic parameters change dynamically during quantum bit calibration.
+
+Supported Drivers: The Qibolab software package supports devices developed by Qblox, Quantum Machines, Zurich Instruments, and RFSoC FPGA. These devices have different operational requirements, and Qibolab achieves seamless control through a unified interface.
+
+In summary, Qibolab provides a unified framework that enables laboratories to control and operate different types of quantum computing devices. It offers abstractions and interfaces to simplify the control process.
+
+
+(10)
+there are the four results of applications .Seperately are 這四種 
+
+(11)
+In the cross-platform benchmark, we use Qibolab to evaluate the performance and efficiency of devices. For example, the figure below shows the absolute times (in seconds) for each experiment, and the ideal time (black bar) indicates the minimum time the qubit needs to be affected in each experiment. On the right side, we calculate the ratio between actual execution time and ideal time. In all cases, real-time sweepers are used except for the Ramsey detuned and standard RB experiments if supported by the control device.
+
+
+ Another test is the standard randomized benchmarking, where each sequence concludes with a unitary gate that restores the initial state, and then the qubit is measured. In the absence of defects, the measurement is expected to be classified as 0 (the initial state) with a probability of 1 independent of the sequence or its length. Single-qubit gate fidelity is defined as a function of the decay parameter of this average survival probability with the sequence length.
+
+The results of the single-qubit randomized benchmarking experiments for random sequences of single-qubit Clifford gates of different lengths are shown below. The figure illustrates 128 single-shot measurements (orange) and the mean over 256 random sequences (blue). The exponential fit is described by m 7→ 0.38(2) · 0.9971(3)m + 0.55(2). This corresponds to an average gate fidelity of 0.9986(2) and a π/2-pulse fidelity of 0.9992(1). Errors are the standard deviation of 1000 'semi-parametric' bootstrapping samples (of binomial random variables with parameters drawn from the empirically observed distribution of relative frequencies).
+
+Cross-Platform Benchmark:
+
+Utilized Qibolab for a cross-platform benchmark to assess device performance and efficiency.
+Demonstrated experiments on various control devices, showcasing a uniform interface provided by Qibolab.
+Results offered insights into the speed of different instruments, aiding researchers and developers in making informed decisions.
+Comprehensive support for different devices within Qibolab was highlighted.
+Qubit Calibration Routines:
+
+Evaluated execution times for various qubit calibration routines on different electronics.
+Explored the impact of real-time sweepers on performance, except for specific experiments.
+Highlighted the influence of communication with the host computer on overall performance.
+Emphasized the importance of considering real-time execution for sweeps in quantum circuits.
+Standard Randomized Benchmarking (RB):
+
+Applied the standard randomized benchmarking technique to assess the accuracy of single-qubit gate implementations.
+Utilized the Qibo framework and Qibolab's Zurich Instruments drivers for experiments on a 5-qubit IQM chip.
+Provided detailed results of the RB experiment, including survival probabilities and gate fidelities.
+Demonstrated the ability to holistically test the software stack and quantum hardware using RB.
+CHSH Experiment:
+
+Conducted a CHSH experiment to measure the CHSH inequality between two qubits.
+Showcased three different methods for building the experiment using Qibo and Qibolab.
+Incorporated Readout Error Mitigation to enhance results and demonstrated its impact.
+Revealed that readout errors dominated in deteriorating experimental results.
+Full-Stack Quantum Machine Learning (QML):
+
+Explored the challenges of Quantum Machine Learning (QML) algorithms in the NISQ era.
+Developed a QML model using Qibo for a Variational Quantum Circuit (VQC) to estimate the u-quark Parton Distribution Function (PDF) data.
+Optimized the model parameters and quantified accuracy using Mean-Squared Error (MSE).
+Provided estimates and confidence intervals for the u-quark PDF using an RFSoC-controlled 1-qubit device.
+
+
+(12)Qibolab is an open-source quantum hardware control module, and in this paper, we elaborate on its key features, including software abstractions, supported drivers, and transpiler. Currently, it is in a stage that allows cross-platform control instrument performance benchmarks through arbitrary pulse control and physics experiments based on the quantum circuit representation. In addition to detailing its functionalities, we present three practical cases in this paper to showcase the application value of Qibolab in quantum technology research: randomized benchmarking, validation algorithms for qubit entanglement (CHSH experiment), and quantum machine learning applications. If successfully applied in the future, Qibolab has the potential to significantly reduce the workload in software development and accelerate the development and training of quantum software.
+
